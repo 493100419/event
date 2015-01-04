@@ -243,7 +243,7 @@
                     活動內容:
                     <asp:Label ID="FeatureLabel" runat="server" Text='<%# Bind("Feature") %>' />
                     <br />
-                    <asp:Button ID="Button5" runat="server" CommandName="Edit" Text="修改" />
+                    <asp:Button ID="Button5" runat="server" CommandName="Edit" Text="修改"  />
                 </ItemTemplate>
                 <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
                 <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
@@ -288,7 +288,7 @@
         </div>
         <div style="margin: auto; width: 1000px;">
            <asp:GridView ID="GridView1" runat="server" CellPadding="4" Font-Size="Small"
-            ForeColor="#333333" GridLines="None" PageSize="5" DataKeyNames="Id" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" style="margin-right: 0px" ShowHeaderWhenEmpty="True">
+            ForeColor="#333333" GridLines="None" PageSize="5" DataKeyNames="Id" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" style="margin-right: 0" ShowHeaderWhenEmpty="True" Height="155px">
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
             <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
@@ -306,30 +306,30 @@
                     </ItemTemplate>
                     <HeaderStyle Width="30px" />
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="售價" SortExpression="Price">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Price") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:TextBox ID="TextBox_Price" runat="server" Height="15px" Text='<%# Bind("Price") %>' Width="50px" MaxLength="6"></asp:TextBox>
-                    </ItemTemplate>
-                    <HeaderStyle Width="50px" />
-                </asp:TemplateField>
                 <asp:TemplateField HeaderText="票種" SortExpression="Name">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:TextBox ID="TextBox_Name" runat="server" Height="15px" Text='<%# Bind("Name") %>' Width="80px" MaxLength="20"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_Name" runat="server" Height="20px" Text='<%# Bind("Name") %>' Width="80px" MaxLength="20"></asp:TextBox>
                     </ItemTemplate>
                     <HeaderStyle Width="85px" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="售價" SortExpression="Price">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Price") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:TextBox ID="TextBox_Price" runat="server" Height="20px" Text='<%# Bind("Price") %>' Width="50px" MaxLength="6"></asp:TextBox>
+                    </ItemTemplate>
+                    <HeaderStyle Width="50px" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="庫存量">
                     <FooterTemplate>
                         
                     </FooterTemplate>
                     <ItemTemplate>
-                        <asp:TextBox ID="TextBox_Qty" runat="server" Height="15px" Text='<%# Application(Eval("EventId") & "_" & Eval("Id"))%>' Width="65px" MaxLength="5"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_Qty" runat="server" Height="20px" Text='<%# Application(Eval("EventId") & "_" & Eval("Id"))%>' Width="65px" MaxLength="5"></asp:TextBox>
                     </ItemTemplate>
                     <HeaderStyle Width="65px" />
                 </asp:TemplateField>
@@ -365,9 +365,9 @@
                 <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
                 <InsertItemTemplate>
                     &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="TextBox_Price2" runat="server" Height="15px" Text='<%# Bind("Price") %>' Width="50px" MaxLength="6" />
-                    &nbsp;<asp:TextBox ID="TextBox_Name" runat="server" Height="15px" Text='<%# Bind("Name") %>' Width="80px" MaxLength="20" />
-                    &nbsp;<asp:TextBox ID="TextBox3" runat="server" Height="15px" Width="65px" MaxLength="5"></asp:TextBox>
+                    <asp:TextBox ID="TextBox_Name" runat="server" Height="20px" Text='<%# Bind("Name") %>' Width="80px" MaxLength="20" />
+                    <asp:TextBox ID="TextBox_Price2" runat="server" Height="20px" Text='<%# Bind("Price") %>' Width="50px" MaxLength="6" />
+                    &nbsp;&nbsp;<asp:TextBox ID="TextBox3" runat="server" Height="20px" Width="65px" MaxLength="5"></asp:TextBox>
                     &nbsp;<asp:Button ID="Button7" runat="server" CommandName="Insert" Text="新增" />
                 </InsertItemTemplate>
                 <ItemTemplate>

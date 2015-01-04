@@ -666,14 +666,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-progressbar { height:2em; text-align: left; }
 .ui-progressbar .ui-progressbar-value {margin: -1px; height:100%; }
 
-  #choose {
-           padding-top:15px;
-            height: 120px;
-            max-width : 1920px;
-           text-align:center;
-            background-color:#ebeeed;
-            margin-bottom:-18px;
-        }
+
          #div_image{
             
            width:100%;
@@ -683,7 +676,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 		padding:0;
 		background:  no-repeat;
         background-position:70% 50%;
-		-moz-background-size: cover;
+		/*-moz-background-size: cover;*/
 		background-size: cover;
            }
        
@@ -708,6 +701,15 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
         }
         
         @media screen and (min-width: 480px) {
+              #choose {
+           padding-top:15px;
+            height: 120px;
+            max-width : 1920px;
+           text-align:center;
+            background-color:#ebeeed;
+            margin-bottom:-18px;
+            
+        }
              #Name{
             height: 150px;
             /*max-width: 1000px;*/
@@ -725,6 +727,8 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
              }
         .middle{
             width:670px;
+             height:75px;
+             line-height:75px;
             margin:auto;
             }
         .control1{
@@ -735,16 +739,31 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
             width:150px;
                  float:left;
             }
+            .tabs3image{
+            max-width:280px;
+            margin: auto;
+            text-align:center;
+            float:left;
+            padding-right:10px
+              }
         }
         @media screen and (max-width: 480px) {
-           #small_image{
+             #choose {
+           padding-top:15px;
+            height: 160px;
+            max-width : 1920px;
+           text-align:center;
+            background-color:#ebeeed;
+            margin-bottom:-18px;
+        }
+            #small_image{
                width:100%;
             height:100%;
             margin-bottom:-5px;
              margin:0;
 		    padding:0;
 	    	background:  no-repeat;
-		    -moz-background-size: cover;
+		    /*-moz-background-size: cover;*/
 		     background-size: cover;
              /*background-image: url("image/small.jpg");*/
              }
@@ -768,5 +787,11 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
             width:300px;
             margin:auto;
         }
-          
+        .tabs3image{
+            max-width:480px;
+            margin: auto;
+            text-align:center;
+            float:left;
+            padding-right:10px
+        }
 }

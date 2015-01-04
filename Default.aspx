@@ -10,7 +10,7 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
  <meta name="viewport" id="view" content="width=device-width; initial-scale=1" /> 
-   
+    <meta name="description" content="High speed and minimal resources Ticket Shopping Website!  " />
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script>
     <%--<script src="js/jquery-ui.js"></script>--%>
@@ -26,56 +26,36 @@
                    selected_tab = i.index;
                }
            });
-
            selected_tab = $("[id$=selected_tab]").val() != "" ? parseInt($("[id$=selected_tab]").val()) : 0;
            tabs.tabs('select', selected_tab);
            $("form").submit(function () {
                $("[id$=selected_tab]").val(selected_tab);
            });
-        
-           <%--$("#dialog-confirm").dialog({
-               autoOpen: false,
-               resizable: false,
-               width: 400,
-               height: 200,
-               modal: true,
-               buttons: {
-                   "確認": function () {
-                       $(this).dialog("close");
-                        __doPostBack("<%=ImageButton1.ClientID%>", "");
-                  },
-                  "取消": function () {
-                      $(this).dialog("close");
-                      return false;
-                  }
-              }
-            });--%>
-        
-           //$("#ImageButton1").click(function () {
-           //    $("#dialog-confirm").dialog("open");
-
-           //    return false;
-           //});
            $("#ImageButton1").click(function () {
-               if ($("#grecaptcha").css('display') == 'none') {
-                   $("#grecaptcha").show();
-                   return false;
-               }
+               var soldout = $("#DropDownList1 option:selected").text();
+               soldout = soldout.slice(-3);
+               
                if ($("#DropDownList1 option:selected").index()==0){
                    return false;
+               }
+               else if (soldout=='已售完') {
+                   return false;
+               }
+               else {
+                   if ($("#grecaptcha").css('display') == 'none') {
+                       $("#grecaptcha").show();
+                       return false;
+                   }
                }
            });
 
            $("#Button_Print").click(function () {
-               
                $("#Label1").printThis();
            });
            $('#Button_Copy').zclip({
                path: 'js/ZeroClipboard.swf',
                copy: $('#EventCode').text()
-               
            });
-
            //倒數計時功能
            $.countdown.setDefaults($.countdown.regionalOptions['zh-TW']);
            var startdate = new Date($("#Label_StartDate").text());
@@ -87,7 +67,6 @@
                serverSync: function () { return new Date(datenow) },
                onExpiry: liftOff,
                alwaysExpire: true,
-
            });
            function liftOff() {
                $("#ImageButton1").attr("disabled", false);
@@ -96,18 +75,10 @@
            }
        });
        var addthis_config = {
-           ui_language: "en"
+           ui_language: "zh-tw"
        }
-  
-
     </script>
- 
-   <%-- <style type="text/css">
-       
-           
-      
-    </style>--%>
-    </head>
+</head>
 <body style= "margin:0">
     <div id ="div_image" runat="server"  >
         <div id="small_image">
@@ -120,19 +91,10 @@
        </div>
     </div>
      <form id="form1" runat="server">
-         
-<%--            
-                    <br />
-                    
-                    <asp:Image ID="Image2" runat="server"  />
-                    <br />--%>
-    
-   
-        
         <div id="choose" >
             
              <div id="defaultCountdown" style="text-align:center; color: #424b51;" ></div>
-            <br />
+           
            
             <div class="middle">
                 <div class="control1" >
@@ -170,7 +132,7 @@
     <div id="tabs-1" style="color: #999999; font-weight: normal">
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <div class="addthis_native_toolbox"></div>
-        <ul style="margin: 0px; padding: 0px; list-style-type: none;">
+        <ul style="margin: 0; padding: 0; list-style-type: none;">
 
                   <li><asp:Label ID="Label_Introduction" runat="server"></asp:Label></li>
 
@@ -205,21 +167,21 @@
                 </div>
     <div id="tabs-3">
         <div  style="max-width:900px;margin:auto">
-        <div style="max-width:280px;margin: auto;text-align:center;float:left;padding-right:10px">
+        <div class="tabs3image">
         <asp:Image ID="Image2" runat="server" ImageUrl="~/Image/1.png" />
-        <h2 style="  font-weight: 200; line-height: 40px; color: rgb(90, 90, 90); text-rendering: optimizelegibility; font-size: 31.5px; font-style: normal; font-variant: normal; letter-spacing: normal; orphans: auto; text-align: center; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;">1.取得預約號碼</h2>
+        <h2 style="  font-weight: 200; line-height: 40px; color: rgb(90, 90, 90); text-rendering: optimizelegibility; font-size: 31.5px; font-style: normal; font-variant: normal; letter-spacing: normal;  text-align: center; text-indent: 0; text-transform: none; white-space: normal;  word-spacing: 0; -webkit-text-stroke-width: 0;">1.取得預約號碼</h2>
 
-            <span style="color: rgb(90, 90, 90); font-size: 16px; font-style: normal; ">選好需要的票種，按下我要搶票按鈕，取得預約號碼。</span>
+            <span style="color: rgb(90, 90, 90); font-size: 16px; font-style: normal; ">選好需要的票種和數量，按下我要搶票按鈕，取得預約號碼。</span>
         </div>
-    <div style="max-width:280px;margin: auto;padding-left:10px;padding-right:10px;text-align:center;float:left">
+    <div class="tabs3image">
         <asp:Image ID="Image3" runat="server" ImageUrl="~/Image/2.png" />
-        <h2 style=" font-weight: 200; line-height: 40px; color: rgb(90, 90, 90); text-rendering: optimizelegibility; font-size: 31.5px; font-style: normal; font-variant: normal; letter-spacing: normal; orphans: auto; text-align: center; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;">2.輸入預約號碼</h2>
+        <h2 style=" font-weight: 200; line-height: 40px; color: rgb(90, 90, 90); text-rendering: optimizelegibility; font-size: 31.5px; font-style: normal; font-variant: normal; letter-spacing: normal;  text-align: center; text-indent: 0; text-transform: none; white-space: normal;  word-spacing: 0; -webkit-text-stroke-width: 0;">2.輸入預約號碼</h2>
       <span style="color: rgb(90, 90, 90); font-size: 16px; font-style: normal; ">於有效期限內登入指定頁面，輸入預約號碼。</span>
 
     </div>
-        <div style="max-width:280px;margin: auto;padding-left:10px;padding-right:10px;text-align:center;float:left">
+        <div class="tabs3image">
             <asp:Image ID="Image4" runat="server" ImageUrl="~/Image/3.png" />
-        <h2 style=" font-weight: 200; line-height: 40px; color: rgb(90, 90, 90); text-rendering: optimizelegibility; font-size: 31.5px; font-style: normal; font-variant: normal; letter-spacing: normal; orphans: auto; text-align: center; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;">3.完成交易</h2>
+        <h2 style=" font-weight: 200; line-height: 40px; color: rgb(90, 90, 90); text-rendering: optimizelegibility; font-size: 31.5px; font-style: normal; font-variant: normal; letter-spacing: normal;  text-align: center; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px;">3.完成交易</h2>
 
 <span style="color: rgb(90, 90, 90); font-size: 16px; font-style: normal; ">確認購物車內容，選擇付款方式，完成交易！</span>    
         </div>
@@ -249,8 +211,6 @@
        <asp:Button ID="Button2" runat="server" Text="進入付款流程" Width="126px" /></p>
             <br />
         <br />
-
-        
         <br />
         </div>
       </div>
@@ -270,7 +230,6 @@
         </form>
    <%-- <div id="dialog-confirm" title="請確認以下內容">
          <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>請確認是否清楚搶票流程?並且遵守搶票規則!</p>
-         
         </div>--%>
     <%--JS放最後--%>
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5493f89e7fa74b9e" async="async"></script>

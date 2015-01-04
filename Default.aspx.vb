@@ -34,8 +34,12 @@ Partial Class _Default
                     Dim j As Integer = 1
                     While dr2.Read()
                         Select Application(dr2("E_I"))
-                            Case Is > 0
+                            Case Is > 10
                                 DropDownList1.Items.Add(dr2("NP") & " / " & "熱賣中")
+                                DropDownList1.Items(j).Value = dr2("Id")
+                                j = j + 1
+                            Case 1 To 10
+                                DropDownList1.Items.Add(dr2("NP") & " / " & "剩餘" & Application(dr2("E_I")))
                                 DropDownList1.Items(j).Value = dr2("Id")
                                 j = j + 1
                             Case Else
@@ -166,7 +170,6 @@ Partial Class _Default
                 'CustomValidator1.ErrorMessage = "已售完"
                 Me.Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert('已售完')", True)
                 args.IsValid = False
-
                 '判斷是否購買過
             ElseIf Session("bought") = "OK" Then
                 ' CustomValidator1.ErrorMessage = "抱歉!每人限購一次"
@@ -187,11 +190,13 @@ Partial Class _Default
                 End If
             Else
                 'CustomValidator1.ErrorMessage = "請勾選我不是機器人"
-                Me.Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert('請勾選我不是機器人')", True)
+                'Me.Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert('請勾選我不是機器人')", True)
                 args.IsValid = False
+                Response.Write("<script language='JavaScript'>alert('請勾選我不是機器人');window.location='default.aspx?id=" + EventId + "';</script>")
             End If
         Else
             Me.Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert('請先開啟Cookie功能')", True)
+            Response.Write("<script language='JavaScript'>alert('請先開啟Cookie功能');window.location='default.aspx?id=" + EventId + "';</script>")
             CustomValidator1.ErrorMessage = ""
             args.IsValid = False
         End If
@@ -222,7 +227,7 @@ Partial Class _Default
             Dim Event_Cookies As String = EventId & "_Code"
             Dim Info_Cookies As String = EventId & "_Info"
             Dim Price_Cookies As String = EventId & "_Price"
-            Dim code As String = UCase(Left(Session.SessionID, 12))
+            Dim code As String = Left(FormsAuthentication.HashPasswordForStoringInConfigFile(Session.SessionID, "MD5"), 12)
             Dim est As TimeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time")
             Dim today As DateTime = TimeZoneInfo.ConvertTime(DateTime.Now, est)
             Response.Cookies(Event_Cookies).Value = code
@@ -265,30 +270,4 @@ Partial Class _Default
         End If
         
     End Sub
-
-   
-    ' 亂數產生預約號碼
-    'Public Function GenerateCheckCode() As String
-    '    Dim number As Integer
-    '    Dim Code As Char
-    '    Dim checkCode As String = String.Empty
-    '    Dim random As System.Random = New Random()
-    '    '要製造出幾個數字
-    '    For i As Integer = 0 To 11
-    '        'number = random.[Next]()
-    '        number = random.Next
-    '        '亂數決定哪一個是數字或字母
-    '        If number Mod 2 = 0 Then
-    '            Code = CChar(ChrW(Asc("0") + (number Mod 10)))
-    '        Else
-    '            Code = CChar(ChrW(Asc("A") + (number Mod 26)))
-    '        End If
-    '        checkCode += Code.ToString()
-    '    Next
-    '    '寫入Cook
-    '    ' Response.Cookies.Add(New HttpCookie("CheckCode", checkCode))
-    '    Return checkCode
-    'End Function
-
-    
 End Class

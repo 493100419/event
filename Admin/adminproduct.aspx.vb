@@ -84,7 +84,7 @@ Partial Class admin
         e.Values("EventId") = Request.QueryString("id").ToString()
     End Sub
 
-    '按下取消後回到目錄
+    '新增活動時按下取消後回到目錄
     Protected Sub InsertCancelButton_Click(sender As Object, e As EventArgs)
         Response.Redirect("admin.aspx")
 
@@ -170,6 +170,18 @@ Partial Class admin
             SqlDataSource1.InsertParameters.Add("@Show", 1)
         Else
             SqlDataSource1.InsertParameters.Add("@Show", 0)
+        End If
+    End Sub
+
+    
+    
+    Protected Sub Page_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
+        If FormView1.CurrentMode = FormViewMode.Edit Then
+            GridView1.Visible = False
+            FormView2.Visible = False
+        Else
+            GridView1.Visible = True
+            FormView2.Visible = True
         End If
     End Sub
 End Class
